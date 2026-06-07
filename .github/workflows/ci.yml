@@ -47,6 +47,8 @@ jobs:
         run: composer validate --strict
 
       - name: Check Code Style
+        env:
+          XDEBUG_MODE: off
         run: ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: Execute Test Suite
