@@ -2,9 +2,9 @@
 
 namespace Zinad\Crowdstrike\Streaming;
 
-use Zinad\Crowdstrike\Exception\ApiException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Zinad\Crowdstrike\Exception\ApiException;
 
 class StreamConnection
 {

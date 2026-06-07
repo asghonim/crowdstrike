@@ -108,7 +108,7 @@ class EventStreamsE2ETest extends TestCase
             $this->assertGreaterThanOrEqual(
                 $offsets[$i - 1],
                 $offsets[$i],
-                "Offsets must be monotonically non-decreasing (got {$offsets[$i-1]} then {$offsets[$i]})."
+                "Offsets must be monotonically non-decreasing (got {$offsets[$i - 1]} then {$offsets[$i]})."
             );
         }
     }

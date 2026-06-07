@@ -56,7 +56,7 @@ class Incidents extends Resource
             '/incidents/entities/incident-actions/v1',
             [
                 'action_parameters' => array_map(
-                    fn($k, $v) => ['name' => $k, 'value' => $v],
+                    fn ($k, $v) => ['name' => $k, 'value' => $v],
                     array_keys($actionParams),
                     $actionParams
                 ),

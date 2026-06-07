@@ -61,7 +61,7 @@ class Alerts extends Resource
             'limit' => $limit,
             'offset' => $offset,
             'q' => $q,
-        ], fn($v) => $v !== null));
+        ], fn ($v) => $v !== null));
     }
 
     /**

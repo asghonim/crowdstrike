@@ -2,10 +2,6 @@
 
 namespace Zinad\Crowdstrike\Tests\Resources;
 
-use Zinad\Crowdstrike\Auth\TokenManager;
-use Zinad\Crowdstrike\Exception\ApiException;
-use Zinad\Crowdstrike\Exception\RateLimitException;
-use Zinad\Crowdstrike\Resources\Alerts;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -13,6 +9,10 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Zinad\Crowdstrike\Auth\TokenManager;
+use Zinad\Crowdstrike\Exception\ApiException;
+use Zinad\Crowdstrike\Exception\RateLimitException;
+use Zinad\Crowdstrike\Resources\Alerts;
 
 #[CoversClass(Alerts::class)]
 class AlertsTest extends TestCase
@@ -53,8 +53,8 @@ class AlertsTest extends TestCase
         $request = $this->requestHistory[0]['request'];
         $this->assertSame('GET', $request->getMethod());
         $this->assertStringContainsString('/alerts/queries/alerts/v2', (string) $request->getUri());
-        $this->assertStringContainsString("filter=", (string) $request->getUri());
-        $this->assertStringContainsString("limit=10", (string) $request->getUri());
+        $this->assertStringContainsString('filter=', (string) $request->getUri());
+        $this->assertStringContainsString('limit=10', (string) $request->getUri());
     }
 
     public function testQueryOmitsNullParams(): void

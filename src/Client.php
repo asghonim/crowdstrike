@@ -2,12 +2,13 @@
 
 namespace Zinad\Crowdstrike;
 
+use GuzzleHttp\Client as GuzzleClient;
 use Zinad\Crowdstrike\Auth\TokenManager;
 use Zinad\Crowdstrike\Resources\Alerts;
-use Zinad\Crowdstrike\Resources\EventStreams;
 use Zinad\Crowdstrike\Resources\Detects;
 use Zinad\Crowdstrike\Resources\DeviceControlPolicies;
 use Zinad\Crowdstrike\Resources\Devices;
+use Zinad\Crowdstrike\Resources\EventStreams;
 use Zinad\Crowdstrike\Resources\FirewallPolicies;
 use Zinad\Crowdstrike\Resources\HostGroups;
 use Zinad\Crowdstrike\Resources\Incidents;
@@ -18,7 +19,6 @@ use Zinad\Crowdstrike\Resources\RealTimeResponse;
 use Zinad\Crowdstrike\Resources\SensorUpdatePolicies;
 use Zinad\Crowdstrike\Resources\Spotlight;
 use Zinad\Crowdstrike\Resources\UserManagement;
-use GuzzleHttp\Client as GuzzleClient;
 
 class Client
 {

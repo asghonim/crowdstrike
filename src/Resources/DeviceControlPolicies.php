@@ -84,7 +84,7 @@ class DeviceControlPolicies extends Resource
     public function action(string $actionName, array $ids, array $params = []): array
     {
         $actionParameters = array_map(
-            fn($k, $v) => ['name' => $k, 'value' => $v],
+            fn ($k, $v) => ['name' => $k, 'value' => $v],
             array_keys($params),
             $params
         );

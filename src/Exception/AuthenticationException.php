@@ -2,4 +2,6 @@
 
 namespace Zinad\Crowdstrike\Exception;
 
-class AuthenticationException extends ApiException {}
+class AuthenticationException extends ApiException
+{
+}

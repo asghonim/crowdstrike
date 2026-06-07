@@ -102,7 +102,7 @@ class Devices extends Resource
      */
     public function action(string $actionName, array $ids, string $comment = ''): array
     {
-        $body = ['ids' => array_map(fn($id) => ['id' => $id], $ids)];
+        $body = ['ids' => array_map(fn ($id) => ['id' => $id], $ids)];
         if ($comment !== '') {
             $body['comment'] = $comment;
         }

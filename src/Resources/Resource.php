@@ -2,19 +2,20 @@
 
 namespace Zinad\Crowdstrike\Resources;
 
-use Zinad\Crowdstrike\Auth\TokenManager;
-use Zinad\Crowdstrike\Exception\ApiException;
-use Zinad\Crowdstrike\Exception\RateLimitException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
+use Zinad\Crowdstrike\Auth\TokenManager;
+use Zinad\Crowdstrike\Exception\ApiException;
+use Zinad\Crowdstrike\Exception\RateLimitException;
 
 abstract class Resource
 {
     public function __construct(
         protected readonly Client $httpClient,
         protected readonly TokenManager $tokenManager,
-    ) {}
+    ) {
+    }
 
     protected function httpGet(string $path, array $query = []): array
     {
@@ -44,7 +45,7 @@ abstract class Resource
             $options['json'] = $body;
         }
 
-        $filtered = array_filter($query, fn($v) => $v !== null && $v !== '');
+        $filtered = array_filter($query, fn ($v) => $v !== null && $v !== '');
         if (!empty($filtered)) {
             $options['query'] = $filtered;
         }

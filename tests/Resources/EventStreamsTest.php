@@ -2,10 +2,6 @@
 
 namespace Zinad\Crowdstrike\Tests\Resources;
 
-use Zinad\Crowdstrike\Auth\TokenManager;
-use Zinad\Crowdstrike\Exception\ApiException;
-use Zinad\Crowdstrike\Resources\EventStreams;
-use Zinad\Crowdstrike\Streaming\StreamConnection;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -13,6 +9,10 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Zinad\Crowdstrike\Auth\TokenManager;
+use Zinad\Crowdstrike\Exception\ApiException;
+use Zinad\Crowdstrike\Resources\EventStreams;
+use Zinad\Crowdstrike\Streaming\StreamConnection;
 
 #[CoversClass(EventStreams::class)]
 class EventStreamsTest extends TestCase

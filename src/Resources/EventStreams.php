@@ -81,7 +81,7 @@ class EventStreams extends Resource
             dataFeedUrl: $stream['dataFeedURL'],
             sessionToken: $stream['sessionToken']['token'],
             refreshInterval: (int) ($stream['refreshActiveSessionInterval'] ?? 1800),
-            onRefresh: fn() => $this->refresh($appId, $refreshPartition),
+            onRefresh: fn () => $this->refresh($appId, $refreshPartition),
         );
     }
 

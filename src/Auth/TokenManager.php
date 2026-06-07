@@ -2,9 +2,9 @@
 
 namespace Zinad\Crowdstrike\Auth;
 
-use Zinad\Crowdstrike\Exception\AuthenticationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Zinad\Crowdstrike\Exception\AuthenticationException;
 
 class TokenManager
 {
@@ -15,7 +15,8 @@ class TokenManager
         private readonly Client $httpClient,
         private readonly string $clientId,
         private readonly string $clientSecret,
-    ) {}
+    ) {
+    }
 
     public function getToken(): string
     {

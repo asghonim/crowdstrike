@@ -2,8 +2,6 @@
 
 namespace Zinad\Crowdstrike\Tests\Resources;
 
-use Zinad\Crowdstrike\Auth\TokenManager;
-use Zinad\Crowdstrike\Resources\Devices;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -11,6 +9,8 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Zinad\Crowdstrike\Auth\TokenManager;
+use Zinad\Crowdstrike\Resources\Devices;
 
 #[CoversClass(Devices::class)]
 class DevicesTest extends TestCase

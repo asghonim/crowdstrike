@@ -2,14 +2,14 @@
 
 namespace Zinad\Crowdstrike\Tests\Auth;
 
-use Zinad\Crowdstrike\Auth\TokenManager;
-use Zinad\Crowdstrike\Exception\AuthenticationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Zinad\Crowdstrike\Auth\TokenManager;
+use Zinad\Crowdstrike\Exception\AuthenticationException;
 
 #[CoversClass(TokenManager::class)]
 class TokenManagerTest extends TestCase

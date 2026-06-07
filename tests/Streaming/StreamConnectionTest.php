@@ -2,8 +2,6 @@
 
 namespace Zinad\Crowdstrike\Tests\Streaming;
 
-use Zinad\Crowdstrike\Exception\ApiException;
-use Zinad\Crowdstrike\Streaming\StreamConnection;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -12,6 +10,8 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Zinad\Crowdstrike\Exception\ApiException;
+use Zinad\Crowdstrike\Streaming\StreamConnection;
 
 #[CoversClass(StreamConnection::class)]
 class StreamConnectionTest extends TestCase
@@ -26,7 +26,7 @@ class StreamConnectionTest extends TestCase
             dataFeedUrl: $feedUrl,
             sessionToken: $token,
             refreshInterval: $refreshInterval,
-            onRefresh: $onRefresh ?? fn() => null,
+            onRefresh: $onRefresh ?? fn () => null,
         );
     }
 
@@ -132,7 +132,7 @@ class StreamConnectionTest extends TestCase
         $event = ['metadata' => ['eventType' => 'T', 'offset' => 50], 'event' => []];
         $conn = $this->stubConnectionWithBody(json_encode($event) . "\n", $requestHistory);
 
-        $conn->consume(fn() => false, offset: 50);
+        $conn->consume(fn () => false, offset: 50);
 
         $uri = (string) $requestHistory[0]['request']->getUri();
         $this->assertStringContainsString('offset=50', $uri);
@@ -148,7 +148,7 @@ class StreamConnectionTest extends TestCase
             feedUrl: 'https://firehose.example.com/feed?appId=test',
         );
 
-        $conn->consume(fn() => false, offset: 10);
+        $conn->consume(fn () => false, offset: 10);
 
         $uri = (string) $requestHistory[0]['request']->getUri();
         $this->assertStringContainsString('appId=test', $uri);
@@ -162,7 +162,7 @@ class StreamConnectionTest extends TestCase
         $event = ['metadata' => ['eventType' => 'T', 'offset' => 1], 'event' => []];
         $conn = $this->stubConnectionWithBody(json_encode($event) . "\n", $requestHistory, token: 'st=my-session-token');
 
-        $conn->consume(fn() => true);
+        $conn->consume(fn () => true);
 
         $authHeader = $requestHistory[0]['request']->getHeaderLine('Authorization');
         $this->assertSame('Token st=my-session-token', $authHeader);
@@ -174,14 +174,14 @@ class StreamConnectionTest extends TestCase
             dataFeedUrl: 'https://firehose.example.com/feed',
             sessionToken: 'st=fake',
             refreshInterval: 1800,
-            onRefresh: fn() => null,
+            onRefresh: fn () => null,
         );
 
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Failed to open event stream');
 
         // No mock handler — will fail with a connection error
-        $conn->consume(fn() => true);
+        $conn->consume(fn () => true);
     }
 
     /**
@@ -209,11 +209,11 @@ class StreamConnectionTest extends TestCase
 
         // We need to inject the mock client; since StreamConnection creates its own
         // GuzzleClient internally, we use a test subclass.
-        return new class(
+        return new class (
             dataFeedUrl: $feedUrl,
             sessionToken: $token,
             refreshInterval: 1800,
-            onRefresh: $onRefresh ?? fn() => null,
+            onRefresh: $onRefresh ?? fn () => null,
             httpClient: $httpClient,
         ) extends StreamConnection {
             public function __construct(
