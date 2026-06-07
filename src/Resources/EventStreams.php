@@ -67,13 +67,21 @@ class EventStreams extends Resource
             throw new ApiException('No event streams are available for appId: ' . $appId, 404);
         }
 
-        $stream = $this->findPartition($resources, $partition) ?? $resources[0];
+        $stream = $this->findPartition($resources, $partition);
+
+        $refreshPartition = $partition;
+        if ($stream === null) {
+            $stream = $resources[0];
+            $refreshPartition = (int) ($stream['partition'] ?? 0);
+        } else {
+            $refreshPartition = (int) ($stream['partition'] ?? $partition);
+        }
 
         return new StreamConnection(
             dataFeedUrl: $stream['dataFeedURL'],
             sessionToken: $stream['sessionToken']['token'],
             refreshInterval: (int) ($stream['refreshActiveSessionInterval'] ?? 1800),
-            onRefresh: fn() => $this->refresh($appId, $partition),
+            onRefresh: fn() => $this->refresh($appId, $refreshPartition),
         );
     }
 
