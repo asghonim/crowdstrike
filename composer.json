@@ -1,11 +1,17 @@
 {
-    "name": "asghonim/crowdstrike",
-    "description": "Client for Falcon Crowdstrike API",
+    "name": "zinad/crowdstrike",
+    "description": "PHP client library for the CrowdStrike Falcon API",
     "type": "library",
     "license": "MIT",
+    "keywords": ["crowdstrike", "falcon", "security", "edr", "api"],
     "autoload": {
         "psr-4": {
-            "Asghonim\\Crowdstrike\\": "src/"
+            "Zinad\\Crowdstrike\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zinad\\Crowdstrike\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -14,8 +20,13 @@
             "email": "asghonim@live.com"
         }
     ],
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "^11.5",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "guzzlehttp/psr7": "^2.0"
     }
 }

@@ -53,3 +53,43 @@ jobs:
 
       - name: Execute Test Suite
         run: ./vendor/bin/phpunit
+      - name: Execute Unit Test Suite
+        run: ./vendor/bin/phpunit --testsuite default
+
+  e2e:
+    name: E2E Tests (PHP 8.2)
+    runs-on: ubuntu-latest
+    if: secrets.CS_CLIENT_ID != '' && secrets.CS_CLIENT_SECRET != '' && secrets.CS_BASE_URL != ''
+    environment: e2e
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP & Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv
+          coverage: none
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Execute E2E Test Suite
+        env:
+          CS_CLIENT_ID: ${{ secrets.CS_CLIENT_ID }}
+          CS_CLIENT_SECRET: ${{ secrets.CS_CLIENT_SECRET }}
+          CS_BASE_URL: ${{ secrets.CS_BASE_URL }}
+        run: ./vendor/bin/phpunit --testsuite e2e --no-coverage
