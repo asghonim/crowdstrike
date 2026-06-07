@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Client::class)]
 class ClientTest extends TestCase
 {
-  public function testItWorks(): void
-  {
-    $c = new Client();
-    $this->assertEquals(1, 1);
-  }
+    public function testItWorks(): void
+    {
+        $c = new Client();
+        $this->assertEquals(1, 1);
+    }
 }
