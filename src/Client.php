@@ -1,7 +1,7 @@
 <?php
+
 namespace Asghonim\Crowdstrike;
 
-class Client 
+class Client
 {
-    
 }
