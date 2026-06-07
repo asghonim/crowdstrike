@@ -46,5 +46,8 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
+      - name: Check Code Style
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff
+
       - name: Execute Test Suite
         run: ./vendor/bin/phpunit
