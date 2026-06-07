@@ -62,7 +62,6 @@ jobs:
   e2e:
     name: E2E Tests (PHP 8.2)
     runs-on: ubuntu-latest
-    if: secrets.CS_CLIENT_ID != '' && secrets.CS_CLIENT_SECRET != '' && secrets.CS_BASE_URL != ''
     environment: e2e
 
     steps:
